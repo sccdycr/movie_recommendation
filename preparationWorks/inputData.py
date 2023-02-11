@@ -19,11 +19,10 @@ def inputdata():
     # 把data中的数据导入到mysql中
     #导入数据links.csv(links.csv数据在导入前，将空值写为NULL)
     sql_inputlinks = ["create table links(movieId int,imdbId int,tmdbId int);",
-                       r'''load data infile '{}' into table links fields terminated by ',' optionally enclosed by '"' lines terminated by '\n'  ignore 1 lines;'''.format(GlobalVar.pathlink)
+                       r'''load data infile "{}" into table links fields terminated by ',' optionally enclosed by '"' escaped by '"' lines terminated by '\r\n' ignore 1 lines (movieId,imdbId,tmdbId);'''.format(GlobalVar.pathlink)
                        ]
     for sql in sql_inputlinks:
         cur.execute(sql)
-
 
 
     #导入数据movies.csv
@@ -87,7 +86,7 @@ def inputdata():
     # 导入数据users
     sql_inputusers = ['use dbmovierecommender',
                       'create table users (userid int,password varchar(10))',
-                      r'''load data infile "{}" into table users fields terminated by ',' lines terminated by '\n' ignore 1 lines'''.format(GlobalVar.pathusers),
+                      r'''load data infile "{}" into table users fields terminated by ',' lines terminated by '\n' '''.format(GlobalVar.pathusers),
                      'create table t as (select userid,count(*) c  from dbmovierecommender.ratings  group by userId)',
                       "ALTER TABLE `dbmovierecommender`.`users` ADD COLUMN `usercount` INT NULL AFTER `password`",
                       'SET SQL_SAFE_UPDATES = 0',

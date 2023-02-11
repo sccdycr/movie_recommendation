@@ -4,7 +4,7 @@ import tkinter as tk
 
 userid = 1
 BigWindow = tk.Tk()
-rootpath="D:/.seniorstudy/graduation_project/my_movie_recommendation/"
+rootpath="G:/graduation_project/code/movie_recommendation/"
 #rootpath1="d:/"
 #data的位置
 pathmovie = rootpath+"data/movies.csv"
@@ -13,9 +13,9 @@ pathrating =rootpath+ "data/ratings.csv"
 pathcosSim_svd = rootpath+"data/cosSim.csv"#pickle
 pathmovie_similar_svd = rootpath+"data/movie_similar_svd.csv"
 pathoffline_recommend_svd = rootpath+"data/offline_recommend_svd.csv"
-pathoffline_recommend_als = rootpath+"data/offline_recommend_als.csv"
+pathoffline_recommend_als = rootpath+"ata/offline_recommend_als.csv"
 pathmovie_similar_svd =rootpath+"data/movie_similar_svd.csv"
-pathmovie_similar_als = rootpath+"data/movie_similar_als.csv"
+pathmovie_similar_als = rootpath+"datda/movie_similar_als.csv"
 pathusers = rootpath+"data/users.csv"
 pathonline_recommend = rootpath+"data/online_recommend.csv"
 pathmovieidlist = rootpath+"data/movieidlist.pickle"
