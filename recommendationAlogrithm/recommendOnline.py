@@ -111,10 +111,10 @@ class recomendOnline:
 
 
 """测试====="""
-# r=recomendOnline(1)
-# l=r.getonlinequeue()
-# print(l)
-# r.put(1,3)
-# r.put(10,5)
-# time.sleep(20)
-# r.savequeue()
+r=recomendOnline(1)
+l=r.getonlinequeue()
+print(l)
+r.put(1,3)
+r.put(10,5)
+time.sleep(20)
+r.savequeue()

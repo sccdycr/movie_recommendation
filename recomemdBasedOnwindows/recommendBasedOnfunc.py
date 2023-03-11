@@ -180,11 +180,12 @@ class recommendBasedOnfunc:
         self.rec_online.put(moiveid,rate)#入队
 
 """测试========"""
-# while 1:
-# r=recommendBasedOnfunc(2)
-# print(r.recmguasslike(20))
-# print(r.recmProduct(2,10))
-# time.sleep(20)
-# r.quit()
-# print(str([1,2,3]))
-#
+for i in range(1,100):
+    r=recommendBasedOnfunc(i)
+    print(r.recmguasslike(2))
+    print(r.recmProduct(i,2))
+
+    time.sleep(20)
+    r.quit()
+    print(str([1,2,3]))
+

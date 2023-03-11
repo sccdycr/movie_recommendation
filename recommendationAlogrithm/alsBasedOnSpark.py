@@ -4,18 +4,20 @@
 import csv
 
 import pandas as pd
-from numpy import long
 from pyspark import SparkContext as sc
 from pyspark import SparkConf
 from pyspark.mllib.recommendation import ALS,MatrixFactorizationModel
 import os, datetime
 import numpy as np
+#from numpy import long
 from pyspark.ml.evaluation import RegressionEvaluator
 # from pyspark.ml.recommendation import ALS #调参时用
 from pyspark.sql import Row
-
+# import warnings
+# warnings.filterwarnings("ignore",category=DeprecationWarning)
 #在程序中添加一以下代码
-
+import findspark
+findspark.init()
 import sys
 
 from pyspark.shell import spark
@@ -26,8 +28,7 @@ import GlobalVar
 path=['', 'D:\\Python3.8_install\\python38.zip', 'D:\\Python3.8_install\\DLLs', 'D:\\Python3.8_install\\lib', 'D:\\Python3.8_install', 'D:\\Python3.8_install\\lib\\site-packages', 'D:\\Python3.8_install\\lib\\site-packages\\pip-21.0.1-py3.8.egg']
 for p in path:
     sys.path.append(p)
-import findspark
-findspark.init()
+
 # 删除文件夹下面的所有文件(删除文件,删除文件夹)
 import os
 def del_file(path_data):
@@ -147,7 +148,7 @@ class MoveRecommend(object):
         GlobalFun.Closesql(conn, cur)
         print(result)
 
-    def Cossim(self,feature1,freature2):
+    def Cossim(self,feature1,freature2):#余弦相似度计算相似度
         a=sum(feature1*freature2)
         b=np.linalg.norm(feature1)
         c=np.linalg.norm(freature2)
@@ -229,7 +230,7 @@ class MoveRecommend(object):
         #     csv_writer.writerow(rlrow)
         # f.close()
 
-        f=open('D://.seniorstudy/graduation_project/pra_Validation3.csv','w',encoding='utf-8',newline="")
+        f=open('G://graduation_project/code/movie_recommendation/data/pra_Validation3.csv','w',encoding='utf-8',newline="")
         csv_writer = csv.writer(f)
 
         #  构建列表头
@@ -238,7 +239,7 @@ class MoveRecommend(object):
             csv_writer.writerow(rlrow)
         f.close()
 
-        f = open('D://.seniorstudy/graduation_project/pra_test.csv', 'w',encoding='utf-8',newline="")
+        f = open('G://graduation_project/code/movie_recommendation/data/pra_test.csv', 'w',encoding='utf-8',newline="")
         csv_writer = csv.writer(f)
 
         #  构建列表头
@@ -252,16 +253,16 @@ class MoveRecommend(object):
     """获取用户相似度矩阵"""
 
 
-# m = MoveRecommend(model_path='D://costom_model', user_path='D://1毕设代码jupyter/cf/ml-latest-small/ratings.csv',
-#                   move_path='D://1毕设代码jupyter/cf/ml-latest-small/movies.csv')
-# #m.recommend_product_by_movieid(1,5)
-# m.recommend_product_by_userid(1,5)
-# m.recommend_user_by_moveid(1,5)
+m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
+                  move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
+#m.recommend_product_by_movieid(1,5)
+m.recommend_product_by_userid(1,5)
+m.recommend_user_by_moveid(1,5)
 
 """调参"""
-# m = MoveRecommend(model_path='D://costom_model', user_path='D://1毕设代码jupyter/cf/ml-latest-small/ratings.csv',
-#                   move_path='D://1毕设代码jupyter/cf/ml-latest-small/movies.csv')
-# m.adjust()
+m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
+                  move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
+m.adjust()
 
 
 
