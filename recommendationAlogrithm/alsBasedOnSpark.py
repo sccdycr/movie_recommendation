@@ -6,7 +6,7 @@ import csv
 import pandas as pd
 from pyspark import SparkContext as sc
 from pyspark import SparkConf
-from pyspark.mllib.recommendation import ALS,MatrixFactorizationModel
+from pyspark.mllib.recommendation import ALS, MatrixFactorizationModel
 import os, datetime
 import numpy as np
 #from numpy import long
@@ -54,6 +54,7 @@ class MoveRecommend(object):
         self.move_path = move_path
         self.model_path = model_path
         self.model = self.get_model()
+        print(1)
 
     @staticmethod
     def get_time():
@@ -260,9 +261,9 @@ m.recommend_product_by_userid(1,5)
 m.recommend_user_by_moveid(1,5)
 
 """调参"""
-m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
-                  move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
-m.adjust()
+# m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
+#                   move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
+# m.adjust()
 
 
 
