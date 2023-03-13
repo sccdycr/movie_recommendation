@@ -1,7 +1,6 @@
 
 .DS_Store
 # output dir
-/data
 /venv
 /datasets
 /VOC2012
