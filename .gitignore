@@ -2,7 +2,6 @@
 .DS_Store
 # output dir
 /venv
-/datasets
 /VOC2012
 /pyopengl
 /detectron2
