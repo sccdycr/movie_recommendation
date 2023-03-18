@@ -198,20 +198,14 @@ def retrain():
 
 
 #测试
-# cbrec=cb(10,10)
-# cbrec.prepare_item_profile()
-# cbrec.user_profile()
-# cbrec.recommend(1)
-
-
-c=cb(10,10)
-c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
-c.user_profile()
-c.recommendbymoive(1)
-
-c=cb(10,10)
-c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
-c.user_profile()
-c.recommendbyuser(49)
+# c=cb(10,10)
+# c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
+# c.user_profile()
+# c.recommendbymoive(1)
+#
+# c=cb(10,10)
+# c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
+# c.user_profile()
+# c.recommendbyuser(49)
 
 

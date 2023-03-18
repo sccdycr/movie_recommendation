@@ -254,11 +254,10 @@ class MoveRecommend(object):
     """获取用户相似度矩阵"""
 
 
-m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
-                  move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
-#m.recommend_product_by_movieid(1,5)
-m.recommend_product_by_userid(1,5)
-m.recommend_user_by_moveid(1,5)
+# m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
+#                   move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
+# m.recommend_product_by_userid(1,5)
+# m.recommend_user_by_moveid(1,5)
 
 """调参"""
 # m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',

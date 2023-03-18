@@ -45,8 +45,8 @@ class hotRecommendation:
         #重新获得热门电影表
 
 """测试======"""
-hotrec=hotRecommendation()
-l=hotrec.gethotmovie(10,[318,858])
-print(l)
+# hotrec=hotRecommendation()
+# l=hotrec.gethotmovie(10,[318,858])
+# print(l)
 
 

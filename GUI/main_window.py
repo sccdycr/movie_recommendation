@@ -2,6 +2,7 @@ import tkinter as tk
 import threading
 import GUI.metaFrame
 import GUI.browseFootprints
+import GlobalFun
 from GUI import GUIGlobalVar
 from recomemdBasedOnwindows.recommendBasedOnfunc import recommendBasedOnfunc
 from recommendationAlogrithm.hotRecommendation import hotRecommendation
@@ -101,31 +102,31 @@ class Main_window():
                 t.start()
 
 
-    # def offline_rec_als(self):
-    #     conn, cur = GlobalFun.ConnectSql()
-    #     cur.execute(
-    #         'select recommendid from movierecommender.offline_recommend_als where userid={} order by predictScore desc limit 5;'.format(self.userid))
-    #     data = cur.fetchall()  # 拿到离线用户推荐信息
-    #     GlobalFun.Closesql(conn, cur)
-    #     print(data)
-    #     print(len(data))
-    #     if len(data) > 0:
-    #         for tup in data:
-    #             t = threading.Thread(target=self.job, args=(self.offline_rec_alsFrame, tup[0]))
-    #             t.start()
-    #
-    # def online_rec(self):
-    #     conn, cur = GlobalFun.ConnectSql()
-    #     cur.execute(
-    #         'select movieid from movierecommender.online_recommend where userid = {} limit 5;'.format(
-    #             self.userid))
-    #     data = cur.fetchall()  # 拿到离线用户推荐信息
-    #     GlobalFun.Closesql(conn, cur)
-    #     print(data)
-    #     print(len(data))
-    #     for tup in data:
-    #         t = threading.Thread(target=self.job, args=(self.online_rec_Frame, tup[0]))
-    #         t.start()
+    def offline_rec_als(self):
+        conn, cur = GlobalFun.ConnectSql()
+        cur.execute(
+            'select recommendid from movierecommender.offline_recommend_als where userid={} order by predictScore desc limit 5;'.format(self.userid))
+        data = cur.fetchall()  # 拿到离线用户推荐信息
+        GlobalFun.Closesql(conn, cur)
+        print(data)
+        print(len(data))
+        if len(data) > 0:
+            for tup in data:
+                t = threading.Thread(target=self.job, args=(self.offline_rec_alsFrame, tup[0]))
+                t.start()
+
+    def online_rec(self):
+        conn, cur = GlobalFun.ConnectSql()
+        cur.execute(
+            'select movieid from movierecommender.online_recommend where userid = {} limit 5;'.format(
+                self.userid))
+        data = cur.fetchall()  # 拿到离线用户推荐信息
+        GlobalFun.Closesql(conn, cur)
+        print(data)
+        print(len(data))
+        for tup in data:
+            t = threading.Thread(target=self.job, args=(self.online_rec_Frame, tup[0]))
+            t.start()
 
     def job(self, Frame, movieid):
         temp = GUI.metaFrame.metaFrame(movieid, self.userid, Frame, self.window, self.root)
