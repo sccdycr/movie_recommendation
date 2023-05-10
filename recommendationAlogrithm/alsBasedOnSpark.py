@@ -25,9 +25,9 @@ from pyspark.shell import spark
 import GlobalFun
 import GlobalVar
 
-path=['', 'D:\\Python3.8_install\\python38.zip', 'D:\\Python3.8_install\\DLLs', 'D:\\Python3.8_install\\lib', 'D:\\Python3.8_install', 'D:\\Python3.8_install\\lib\\site-packages', 'D:\\Python3.8_install\\lib\\site-packages\\pip-21.0.1-py3.8.egg']
-for p in path:
-    sys.path.append(p)
+# path=['', 'D:\\Python3.8_install\\python38.zip', 'D:\\Python3.8_install\\DLLs', 'D:\\Python3.8_install\\lib', 'D:\\Python3.8_install', 'D:\\Python3.8_install\\lib\\site-packages', 'D:\\Python3.8_install\\lib\\site-packages\\pip-21.0.1-py3.8.egg']
+# for p in path:
+#     sys.path.append(p)
 
 # 删除文件夹下面的所有文件(删除文件,删除文件夹)
 import os
@@ -179,7 +179,7 @@ class MoveRecommend(object):
     def adjust(self):
         """只用训练集，训练model并持久化到本地目录"""
         ranke=[5]
-        lam=[0.1,0.12,0.14,0.16,0.18,0.2,0.22]
+        lam=[0.1,0.15,0.2,0.25,0.3,0.35,0.4]
         user_rdd = self.sc.textFile("file:///" + self.user_path)
         raw_rating_rdd = user_rdd.map(lambda line: line.split(',')[:3])  # 每行分割后为一个包含4个元素的列表，取前3项即可
         first = raw_rating_rdd.first()
@@ -254,10 +254,10 @@ class MoveRecommend(object):
     """获取用户相似度矩阵"""
 
 
-# m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
-#                   move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
-# m.recommend_product_by_userid(1,5)
-# m.recommend_user_by_moveid(1,5)
+m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',
+                  move_path='G://graduation_project/code/movie_recommendation/data/movies.csv')
+m.recommend_product_by_userid(1,5)
+m.recommend_user_by_moveid(1,5)
 
 """调参"""
 # m = MoveRecommend(model_path='G://graduation_project/code/movie_recommendation/costom_model', user_path='G://graduation_project/code/movie_recommendation/data/ratings.csv',

@@ -12,19 +12,19 @@ import numpy as np
 import GlobalVar
 import pickle
 #根据rating.csv得到协同过滤矩阵
-ratings = pd.read_csv("{}".format(GlobalVar.pathrating))
+ratings = pd.read_csv("{}".format(GlobalVar.pathrating))#读取rating数据
 rating_dict = {}
 for i in range(ratings.shape[0]):
-    line = ratings.loc[i,:]
+    line = ratings.loc[i,:]#将每行数据读入
     if line.userId in rating_dict:
         rating_dict[line.userId][line.movieId] = line.rating
     else:
         rating_dict[line.userId] = {line.movieId:line.rating}
 rating_matrix = pd.DataFrame(rating_dict).T
 rating_matrix
-rating_matrix_fillzero = rating_matrix.fillna(0)
+rating_matrix_fillzero = rating_matrix.fillna(0)#得到rating矩阵
 #
-# #进行模型的评价
+#进行模型的评价？？？
 rating_train = pickle.load(open("/Users/stacy/code/try movie recommend system/test_data/test_data.pkl",'rb'))
 val = pickle.load(open("/Users/stacy/code/try movie recommend system/test_data/val.pkl",'rb'))
 test_loc = pickle.load(open("/Users/stacy/code/try movie recommend system/test_data/test_loc.pkl","rb"))
@@ -69,7 +69,7 @@ def vec_grad_desc(R,max_iter=5000,lamda=0.004,K=2,alpha=0.0002):
 
     return P,Q,cost
 
-P,Q,cost = vec_grad_desc(rating_train,max_iter=1000,lamda=0.0004,K=12,alpha=0.0002)
+P,Q,cost = vec_grad_desc(rating_train,max_iter=1000,lamda=0.0004,K=12,alpha=0.0002)#lamda或者alpha是步长
 
 #计算余弦相似矩阵
 Q = pickle.load(open('/Users/stacy/code/Q_k12_best.pickle', 'rb'))

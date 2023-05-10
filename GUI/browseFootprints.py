@@ -1,4 +1,7 @@
 import tkinter as tk
+import ttkbootstrap as tkk
+from ttkbootstrap.constants import *
+
 
 import GUI
 import GlobalFun

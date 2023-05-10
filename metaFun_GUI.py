@@ -1,4 +1,4 @@
-import  random
+import random
 import requests
 from PIL import Image,ImageTk
 import io

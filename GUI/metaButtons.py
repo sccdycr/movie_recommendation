@@ -9,6 +9,8 @@
 
 
 import tkinter as tk
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 
 import GUI
 import GlobalVar
@@ -32,6 +34,7 @@ class Login_register_Button():
         else:
             s.set('Logout')
         self.Button = tk.Button(self.nagvibar,textvariable=s,command=self.trigger)
+        # self.Button = ttk.Button(self.nagvibar,textvariable=s,command=self.trigger, bootstyle="success")
 
     def trigger(self):
         if self.userid is None:
@@ -47,10 +50,10 @@ class Login_register_Button():
     def login(self):#登陆的那一套
         self.window_sign_up = tk.Toplevel(self.root)
         self.window_sign_up.geometry("459x345")
-        self.window_sign_up.title('Login|Register')
+        self.window_sign_up.title('login|register')
 
         self.name = tk.StringVar()
-        self.name.set("1~610")
+        self.name.set("1~10000")
         tk.Label(self.window_sign_up,text="UserId:").place(x=50,y=57)
         tk.Entry(self.window_sign_up,textvariable=self.name).place(x=103,y=57)
 
@@ -59,7 +62,7 @@ class Login_register_Button():
         tk.Entry(self.window_sign_up,textvariable=self.password,show='*').place(x=103,y=117)
 
         #温馨提示
-        tk.Label(self.window_sign_up,text="The recorded userId is from 1 to 610\nPassword is identical to  userId\nIf you want to register a new user,\nplease start from 611.",justify='left').place(x=103,y=166)
+        tk.Label(self.window_sign_up,text="The recorded userId is from 1 to 10000\nPassword is identical to  userId\nIf you want to register a new user,\nplease start from 10001.",justify='left').place(x=103,y=166)
         tk.Button(self.window_sign_up,text="Login/register",command=self.comfirm).place(x=282,y=253)
 
     def comfirm(self):

@@ -7,12 +7,12 @@ import GlobalVar
 #设置热门电影
 def sethotlist(num):
     hotlist = []
-    sql='SELECT * FROM dbmovierecommender.movie_score_info where times>50 order by score desc limit {}'.format(num)
-    conn, cur = GlobalFun.ConnectSql()
+    sql='SELECT * FROM dbmovierecommender.movie_score_info where times>50 order by score desc limit {}'.format(num)#获取点击次数大于50次的电影，降序排序
+    conn, cur = GlobalFun.ConnectSql() #链接数据库
     cur.execute(sql)
-    data=cur.fetchall()
+    data=cur.fetchall() #fetchall函数返回多个元组
     for d in data:
-        hotlist.append(d[0])
+        hotlist.append(d[0])#将热门电影加入热门推荐列表
     return hotlist
 
 class hotRecommendation:

@@ -32,13 +32,13 @@ class cb:
             genres_all.extend(genres)
             # 获得所有的电影的类型
         self.genres_all=set(genres_all)
-        length=len(self.genres_all)
+        length=len(self.genres_all)#获得电影类型一共有多少种
         #获得one-hot编码
         for item in self.item_dict.keys():
             self.item_matrix[item]=[0]*length
             for genre in self.item_dict[item]:
                 index=list(set(self.genres_all)).index(genre)
-                self.item_matrix[item][index]=1#one -hot编码，由此得到item画像
+                self.item_matrix[item][index]=1#one -hot编码，由此得到item画像,根据电影类型进行编码
                 #再保存起来
 
     # 为用户画像
@@ -46,7 +46,7 @@ class cb:
         users=pd.read_csv(rates)
         users_id=set(users["userId"].values)
         for user in users_id:
-            self.user_rating_dict.setdefault(user,{})
+            self.user_rating_dict.setdefault(user,{})#为每个用户初始化一个评分字典
         # with open(rates,"r") as fr:
         #     for line in fr.readline():
         for line in range(len(users)):
@@ -56,12 +56,12 @@ class cb:
             item=users["movieId"][line]
             rate=users["rating"][line]
                 # (user,item,rate)=line.split(",")[3]
-            self.user_rating_dict[user][item]=int(rate)
+            self.user_rating_dict[user][item]=int(rate)#将用户对每个电影的评分存入用户评分字典内
         for user in self.user_rating_dict.keys():
-            score_list=self.user_rating_dict[user].values()
-            avg=sum(score_list)/len(score_list)
+            score_list=self.user_rating_dict[user].values()#每个用户对所有电影的评分
+            avg=sum(score_list)/len(score_list)#用户平均评分
             self.user_matrix[user]=[]
-            for genre in self.genres_all:  # 依次遍历每一个类型
+            for genre in self.genres_all:  # 依次遍历每一个类型 得到每个用户对评分过的类型的偏好
                 score_all = 0.0
                 score_len = 0
                 # 遍历每个item
@@ -142,7 +142,7 @@ class cb:
         items=set(items)-set([movie])
         movie_feature=self.item_matrix[movie]
         for item in items:
-            movie_result[item] = GlobalFun.cosUI(self.item_matrix[item], movie_feature)  # 获取用户对Item的喜好程度集合
+            movie_result[item] = GlobalFun.cosUI(self.item_matrix[item], movie_feature)  # 获取用户对Item的喜好程度集合，余弦相似计算
         if self.itemK is None:  # 如果前K个不是空
             result = sorted(  # 排序
                 movie_result.items(), key=lambda k: k[1], reverse=True
@@ -198,14 +198,14 @@ def retrain():
 
 
 #测试
-# c=cb(10,10)
-# c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
-# c.user_profile()
-# c.recommendbymoive(1)
-#
-# c=cb(10,10)
-# c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
-# c.user_profile()
-# c.recommendbyuser(49)
+c=cb(10,10)
+c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
+c.user_profile()
+c.recommendbymoive(3)
+
+c=cb(10,10)
+c.prepare_item_profile()#实际上并不需要完全重新训练，这里懒得改了
+c.user_profile()
+c.recommendbyuser(49)
 
 
